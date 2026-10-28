@@ -1,0 +1,54 @@
+---
+name: python-testing
+description: >-
+  Plan Python unit, integration, fixture, mocking, and regression tests.
+---
+
+# Skill: python-testing
+
+## Purpose
+Plan Python unit, integration, fixture, mocking, and regression tests. Treat this as a narrow pattern card: use it to sharpen one decision surface quickly, then hand back to the broader workflow.
+
+## Use When
+- The active question is primarily about: plan Python unit, integration, fixture, mocking, and regression tests.
+- A broader skill exists, but the current question is narrow enough for a fast focused review.
+- You want a reusable checklist before implementation, review, or escalation continues.
+
+## Do Not Use When
+- The task needs an end-to-end workflow or multi-step implementation chain. Use `test-strategy-planner`.
+- The main risk has shifted to an adjacent concern outside this card. Use `python-code-implementer`.
+- The user only wants generic best practices with no repo, product, or workflow context.
+
+## Focus Checklist
+1. Prefer pytest-native fixtures, parametrization, tmp_path, monkeypatch, and async-loop discipline before heavier harnesses.
+2. Separate unit, integration, heavier environment, and regression checks.
+3. Make false-green and flaky-path risk explicit before adding fixtures.
+4. Escalate to `test-strategy-planner` if the task becomes a full implementation or cross-language test strategy exercise.
+
+## Evidence To Collect
+- pytest command, fixture plan, and the one regression it must catch
+- exact commands or harnesses that would run the tests
+- the one failure mode the proposed tests must catch
+
+## Related Skills
+- Primary broader workflow: `test-strategy-planner`
+- Adjacent boundary: `python-code-implementer`
+- This card stays active only while its narrow scope remains smaller than those broader lanes.
+
+## Group
+Language And Framework
+
+## Output Contract
+```markdown
+## Decision
+- [recommended pattern, constraint, or next move]
+
+## Risks
+- [main failure or tradeoff]
+
+## Evidence
+- [files, commands, examples, metrics, or assumptions]
+
+## Next Step
+- [implement, escalate, or stop]
+```

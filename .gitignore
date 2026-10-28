@@ -1,0 +1,66 @@
+# Local Codex / Claude workspace state
+.codex/
+.codex
+
+# Maintainer-only local archive
+experimental/
+experimental
+
+# Optional generated local context files
+.claude/knowledge/*
+!.claude/knowledge/README.md
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editor / IDE state
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node package manager artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local env files
+.env
+.env.*
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+logs/
+dumps/
+tmp/
+temp/
+
+# Repo dumps / generated audit files
+repo_dump*.txt
+final_repo_dump*.txt
+agents_dump.txt
+skills_dump.txt
+encoding_issues.txt
+
+# Claude local runtime/cache artifacts
+.claude/settings.local.json
+.claude/.cache/
+
+# Skill packaging / local evaluation artifacts
+*.skill
+.claude/skills/**/*-workspace/

@@ -1,0 +1,42 @@
+name: checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Bash syntax of hooks
+        run: |
+          for f in .claude/hooks/*.sh; do
+            bash -n "$f"
+          done
+
+      - name: ShellCheck hooks
+        uses: ludeeus/action-shellcheck@2.0.0
+        with:
+          scandir: ./.claude/hooks
+          severity: error
+
+      - name: Hook regression tests
+        run: bash tests/hooks/run.sh
+
+      - name: Python syntax
+        run: |
+          git ls-files -z '*.py' | xargs -0 python3 -m py_compile
+
+      - name: No hard-coded model names
+        run: |
+          if git grep -n -i -E 'claude-[0-9]|claude-(opus|sonnet|haiku|fable)-[0-9]|(opus|sonnet|haiku)-[0-9]'; then
+            echo "hard-coded model names found; use tier aliases or ANTHROPIC_MODEL" >&2
+            exit 1
+          fi
